@@ -2,7 +2,7 @@ import random
 
 import cocotb
 from cocotb.decorators import coroutine
-from cocotb.result import TestFailure, ReturnValue
+from cocotb.result import TestFailure
 from cocotb.triggers import RisingEdge, Edge
 
 from cocotblib.misc import log2Up, BoolRandomizer, assertEquals, waitClockedCond, randSignal
@@ -63,7 +63,7 @@ class Apb3:
         self.PSEL <= 0
         randSignal(self.PENABLE)
         randSignal(self.PWRITE)
-        raise ReturnValue(int(self.PRDATA))
+        raise int(self.PRDATA)
 
 
     @coroutine

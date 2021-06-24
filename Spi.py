@@ -2,7 +2,7 @@ import random
 
 import cocotb
 from cocotb.decorators import coroutine
-from cocotb.result import TestFailure, ReturnValue
+from cocotb.result import TestFailure
 from cocotb.triggers import RisingEdge, Edge, Timer
 
 from cocotblib.TriState import TriStateOutput
@@ -78,7 +78,7 @@ class SpiSlaveMaster:
                 self.spi.sclk <= (self.cpol)
                 yield Timer(self.baudPeriode >> 1)
 
-        raise ReturnValue(buffer)
+        raise buffer
 
     @coroutine
     def exchangeCheck(self, masterData, slaveData):
