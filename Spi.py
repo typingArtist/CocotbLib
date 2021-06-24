@@ -65,7 +65,7 @@ class SpiSlaveMaster:
             for i in range(self.dataWidth):
                 self.spi.mosi <= testBit(masterData, self.dataWidth - 1 - i)
                 yield Timer(self.baudPeriode >> 1)
-                buffer = buffer + str(self.spi.miso.write) if bool(self.spi.miso.writeEnable) else "x"
+                buffer = buffer + str(self.spi.miso.write.value) if bool(self.spi.miso.writeEnable) else "x"
                 self.spi.sclk <= (not self.cpol)
                 yield Timer(self.baudPeriode >> 1)
                 self.spi.sclk <= (self.cpol)
@@ -74,7 +74,7 @@ class SpiSlaveMaster:
                 self.spi.mosi <= testBit(masterData, self.dataWidth -1  - i)
                 self.spi.sclk <= (not self.cpol)
                 yield Timer(self.baudPeriode >> 1)
-                buffer = buffer + str(self.spi.miso.write) if bool(self.spi.miso.writeEnable) else "x"
+                buffer = buffer + str(self.spi.miso.write.value) if bool(self.spi.miso.writeEnable) else "x"
                 self.spi.sclk <= (self.cpol)
                 yield Timer(self.baudPeriode >> 1)
 
